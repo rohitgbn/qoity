@@ -1,0 +1,44 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    function isValidImage() {
+      return request.resource.contentType.matches('image/(jpeg|png|webp)')
+        && request.resource.size < 5 * 1024 * 1024; // 5 MB max
+    }
+    
+    function isValidAvatar() {
+      return request.resource.contentType.matches('image/(jpeg|png|webp)')
+        && request.resource.size < 2 * 1024 * 1024; // 2 MB max
+    }
+
+    // Post images
+    match /posts/{userId}/{imageId} {
+      allow read: if true;
+      allow create: if isOwner(userId) && isValidImage();
+      allow update: if isOwner(userId) && isValidImage();
+      allow delete: if isOwner(userId);
+    }
+    
+    // User profile avatars
+    match /avatars/{userId}/{imageId} {
+      allow read: if true;
+      allow create: if isOwner(userId) && isValidAvatar();
+      allow update: if isOwner(userId) && isValidAvatar();
+      allow delete: if isOwner(userId);
+    }
+    
+    // Disallow all other writes
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

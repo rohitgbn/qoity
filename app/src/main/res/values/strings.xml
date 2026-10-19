@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">QuoteVerse</string>
+    <string name="app_tagline">Quotes &amp; Shayari Social Community</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_explore">Explore</string>
+    <string name="nav_create">Create</string>
+    <string name="nav_notifications">Activity</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- General -->
+    <string name="follow">Follow</string>
+    <string name="following">Following</string>
+    <string name="unfollow">Unfollow</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="block">Block User</string>
+    <string name="unblock">Unblock</string>
+    <string name="report">Report</string>
+    <string name="delete">Delete</string>
+    <string name="share">Share</string>
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="publish">Publish</string>
+    <string name="comments">Comments</string>
+    <string name="likes">Likes</string>
+</resources>
